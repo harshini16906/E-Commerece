@@ -7,6 +7,12 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Add event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize cart from localStorage
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Set active navbar link based on current page
+    setActiveNavLink();
+    
     // Contact form submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -30,6 +36,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll event for navbar and back-to-top
     window.addEventListener('scroll', handleScroll);
 });
+
+// ================================
+// Set Active Navbar Link
+// ================================
+/**
+ * Set the active navbar link based on current page URL
+ */
+function setActiveNavLink() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        
+        // Get the href attribute
+        const href = link.getAttribute('href');
+        
+        // Check if this link matches the current page
+        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+}
 
 // ================================
 // Add to Cart Function
