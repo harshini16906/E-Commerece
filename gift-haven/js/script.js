@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update cart display if on cart page
     updateCartDisplay();
+    updateCartCount();
 });
 
 // ================================
@@ -48,8 +49,9 @@ function addToCart(productName, price = 0) {
         showNotification(`${productName} added to cart!`);
     }
 
-    // Save cart to localStorage
+    // Save cart to localStorage and update count
     saveCart();
+    updateCartCount();
 }
 
 // ================================
@@ -60,6 +62,22 @@ function addToCart(productName, price = 0) {
  */
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
+
+// ================================
+// Update Cart Count Display
+// ================================
+/**
+ * Update the cart count badge in navigation
+ */
+function updateCartCount() {
+    const cartCountEl = document.getElementById('cart-count');
+    if (!cartCountEl) return;
+    
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountEl.textContent = totalItems;
+    cartCountEl.style.display = totalItems > 0 ? 'inline-flex' : 'none';
 }
 
 // ================================

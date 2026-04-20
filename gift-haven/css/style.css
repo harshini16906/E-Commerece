@@ -737,6 +737,342 @@ body {
 }
 
 /* ================================
+   Products Page - Modern Design
+   ================================ */
+
+/* Products Header */
+.products-header {
+    text-align: center;
+    padding: 60px var(--padding) 40px;
+    background: linear-gradient(135deg, #ffe4f0 0%, #e6d9f0 50%, #fff9fc 100%);
+}
+
+.products-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+}
+
+.products-header p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+}
+
+/* Products Container */
+.products-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px var(--padding);
+}
+
+/* Search & Filter Wrapper */
+.search-filter-wrapper {
+    margin-bottom: 40px;
+}
+
+/* Search Bar */
+.search-bar-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px 15px 45px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(230, 73, 128, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+/* Filter Controls */
+.filter-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.filter-group select {
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.filter-group select:hover {
+    border-color: var(--primary-color);
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(230, 73, 128, 0.2);
+}
+
+/* Clear Filters Button */
+.btn-clear-filters {
+    padding: 0.8rem 1.5rem;
+    background: rgba(230, 73, 128, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+.btn-clear-filters:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+/* Products Info */
+.products-info {
+    margin-bottom: 20px;
+}
+
+.products-info p {
+    color: var(--light-text);
+    font-weight: 500;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.product-card:hover {
+    transform: translateY(-12px) perspective(1000px) rotateX(2deg);
+    box-shadow: 0 15px 40px rgba(230, 73, 128, 0.2);
+}
+
+.product-image {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe4f0 0%, #e6d9f0 100%);
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08) rotate(1deg);
+}
+
+/* Product Badge */
+.product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+.badge-new {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.badge-bestseller {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(230, 73, 128, 0.3);
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.1);
+    background: var(--primary-color);
+}
+
+.wishlist-btn.wishlisted {
+    color: var(--primary-color);
+    background: rgba(230, 73, 128, 0.1);
+}
+
+/* Product Content */
+.product-content {
+    padding: 1.5rem;
+}
+
+.product-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.product-card:hover .product-content h3 {
+    color: var(--primary-color);
+}
+
+.product-desc {
+    color: var(--light-text);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Product Rating */
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    font-size: 1rem;
+}
+
+.rating-text {
+    color: var(--light-text);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Product Footer */
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.product-card .btn-icon {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+}
+
+/* No Products Message */
+.no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px var(--padding);
+    color: var(--light-text);
+    font-size: 1.2rem;
+}
+
+/* Load More Button Container */
+.load-more-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.load-more-container .btn {
+    padding: 1rem 3rem;
+    font-size: 1.05rem;
+}
+
+/* Cart Count Badge */
+.cart-count {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--white);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+/* ================================
    Responsive Design
    ================================ */
 
