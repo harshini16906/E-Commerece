@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Gift Haven</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🎁 Gift Haven</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link active">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Our Products</h1>
+        <p class="subtitle">Browse our amazing collection of gifts</p>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <label for="category">Filter by Category:</label>
+            <select id="category">
+                <option value="all">All Products</option>
+                <option value="electronics">Electronics</option>
+                <option value="accessories">Accessories</option>
+                <option value="home">Home & Decor</option>
+            </select>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/placeholder-1.jpg" alt="Luxury Watch">
+                <h3>Luxury Watch</h3>
+                <p>Premium timepiece for the modern professional</p>
+                <p class="price">$99.99</p>
+                <button class="btn btn-add" onclick="addToCart('Luxury Watch')">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="images/placeholder-2.jpg" alt="Scented Candle">
+                <h3>Scented Candle</h3>
+                <p>Handcrafted aromatherapy candle</p>
+                <p class="price">$24.99</p>
+                <button class="btn btn-add" onclick="addToCart('Scented Candle')">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="images/placeholder-3.jpg" alt="Wireless Headphones">
+                <h3>Wireless Headphones</h3>
+                <p>Premium sound quality, noise-cancelling</p>
+                <p class="price">$79.99</p>
+                <button class="btn btn-add" onclick="addToCart('Wireless Headphones')">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="images/placeholder-4.jpg" alt="Phone Case">
+                <h3>Designer Phone Case</h3>
+                <p>Stylish protection for your smartphone</p>
+                <p class="price">$19.99</p>
+                <button class="btn btn-add" onclick="addToCart('Designer Phone Case')">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="images/placeholder-5.jpg" alt="Coffee Maker">
+                <h3>Smart Coffee Maker</h3>
+                <p>App-controlled brewing for the tech enthusiast</p>
+                <p class="price">$129.99</p>
+                <button class="btn btn-add" onclick="addToCart('Smart Coffee Maker')">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="images/placeholder-6.jpg" alt="Plant Pot">
+                <h3>Ceramic Plant Pot</h3>
+                <p>Beautiful handmade plant container</p>
+                <p class="price">$34.99</p>
+                <button class="btn btn-add" onclick="addToCart('Ceramic Plant Pot')">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Gift Haven. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

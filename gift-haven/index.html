@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Haven - Find the Perfect Gift for Every Occasion</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">🎁 Gift Haven</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1>Find the Perfect Gift for Every Occasion</h1>
+                <p>Discover curated gifts that spread joy and love to your favorite people</p>
+                <div class="hero-buttons">
+                    <a href="products.html" class="btn btn-primary btn-lg">Shop Now</a>
+                    <a href="#categories" class="btn btn-outline btn-lg">Explore Categories</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <div class="gift-box">🎁</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Products Section -->
+    <section class="featured" id="featured">
+        <div class="section-header">
+            <h2>✨ Featured Gifts</h2>
+            <p>Handpicked selections for every celebration</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card glass-effect" data-aos="fade-up">
+                <div class="product-image">
+                    <img src="images/placeholder-1.jpg" alt="Luxury Watch">
+                    <div class="product-badge">Premium</div>
+                </div>
+                <div class="product-info">
+                    <h3>Luxury Watch</h3>
+                    <p>Premium timepiece for the modern professional</p>
+                    <div class="product-footer">
+                        <span class="price">$99.99</span>
+                        <button class="btn btn-icon" onclick="addToCart('Luxury Watch', 99.99)">
+                            <span class="cart-icon">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card glass-effect" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-image">
+                    <img src="images/placeholder-2.jpg" alt="Scented Candle">
+                    <div class="product-badge">Bestseller</div>
+                </div>
+                <div class="product-info">
+                    <h3>Scented Candle</h3>
+                    <p>Handcrafted aromatherapy candle</p>
+                    <div class="product-footer">
+                        <span class="price">$24.99</span>
+                        <button class="btn btn-icon" onclick="addToCart('Scented Candle', 24.99)">
+                            <span class="cart-icon">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card glass-effect" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-image">
+                    <img src="images/placeholder-3.jpg" alt="Wireless Headphones">
+                    <div class="product-badge">New</div>
+                </div>
+                <div class="product-info">
+                    <h3>Wireless Headphones</h3>
+                    <p>Premium sound quality, noise-cancelling</p>
+                    <div class="product-footer">
+                        <span class="price">$79.99</span>
+                        <button class="btn btn-icon" onclick="addToCart('Wireless Headphones', 79.99)">
+                            <span class="cart-icon">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card glass-effect" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-image">
+                    <img src="images/placeholder-4.jpg" alt="Designer Phone Case">
+                    <div class="product-badge">Trendy</div>
+                </div>
+                <div class="product-info">
+                    <h3>Designer Phone Case</h3>
+                    <p>Stylish protection for your smartphone</p>
+                    <div class="product-footer">
+                        <span class="price">$19.99</span>
+                        <button class="btn btn-icon" onclick="addToCart('Designer Phone Case', 19.99)">
+                            <span class="cart-icon">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="product-card glass-effect" data-aos="fade-up" data-aos-delay="400">
+                <div class="product-image">
+                    <img src="images/placeholder-5.jpg" alt="Smart Coffee Maker">
+                    <div class="product-badge">Tech</div>
+                </div>
+                <div class="product-info">
+                    <h3>Smart Coffee Maker</h3>
+                    <p>App-controlled brewing for tech enthusiasts</p>
+                    <div class="product-footer">
+                        <span class="price">$129.99</span>
+                        <button class="btn btn-icon" onclick="addToCart('Smart Coffee Maker', 129.99)">
+                            <span class="cart-icon">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="product-card glass-effect" data-aos="fade-up" data-aos-delay="500">
+                <div class="product-image">
+                    <img src="images/placeholder-6.jpg" alt="Ceramic Plant Pot">
+                    <div class="product-badge">Eco</div>
+                </div>
+                <div class="product-info">
+                    <h3>Ceramic Plant Pot</h3>
+                    <p>Beautiful handmade plant container</p>
+                    <div class="product-footer">
+                        <span class="price">$34.99</span>
+                        <button class="btn btn-icon" onclick="addToCart('Ceramic Plant Pot', 34.99)">
+                            <span class="cart-icon">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view-all-container">
+            <a href="products.html" class="btn btn-secondary btn-lg">View All Products</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="section-header">
+            <h2>🎉 Shop by Occasion</h2>
+            <p>Find the perfect gift for any celebration</p>
+        </div>
+
+        <div class="categories-grid">
+            <!-- Birthday Category -->
+            <div class="category-card glass-effect" data-aos="fade-up">
+                <div class="category-icon">🎂</div>
+                <h3>Birthday</h3>
+                <p>Celebrate special moments</p>
+                <a href="products.html" class="category-link">Explore →</a>
+            </div>
+
+            <!-- Anniversary Category -->
+            <div class="category-card glass-effect" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-icon">💑</div>
+                <h3>Anniversary</h3>
+                <p>Express your love and affection</p>
+                <a href="products.html" class="category-link">Explore →</a>
+            </div>
+
+            <!-- Love & Romance Category -->
+            <div class="category-card glass-effect" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-icon">❤️</div>
+                <h3>Love & Romance</h3>
+                <p>Gifts for your special someone</p>
+                <a href="products.html" class="category-link">Explore →</a>
+            </div>
+
+            <!-- Surprise & Celebration Category -->
+            <div class="category-card glass-effect" data-aos="fade-up" data-aos-delay="300">
+                <div class="category-icon">🎊</div>
+                <h3>Surprise Gifts</h3>
+                <p>Unexpected delights for loved ones</p>
+                <a href="products.html" class="category-link">Explore →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Banner -->
+    <section class="special-offer">
+        <div class="offer-content glass-effect">
+            <div class="offer-text">
+                <h2>🎁 Special Offer Alert!</h2>
+                <p>Get Flat 20% OFF on all orders above $50</p>
+                <span class="offer-code">Use Code: <strong>GIFT20</strong></span>
+            </div>
+            <a href="products.html" class="btn btn-white btn-lg">Claim Your Discount</a>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us">
+        <div class="section-header">
+            <h2>Why Choose Gift Haven?</h2>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card" data-aos="fade-up">
+                <div class="benefit-icon">✓</div>
+                <h3>Curated Selection</h3>
+                <p>Hand-picked gifts for every occasion</p>
+            </div>
+
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-icon">✓</div>
+                <h3>Fast Shipping</h3>
+                <p>Quick and reliable delivery</p>
+            </div>
+
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-icon">✓</div>
+                <h3>Easy Returns</h3>
+                <p>30-day return guarantee</p>
+            </div>
+
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-icon">✓</div>
+                <h3>Secure Payment</h3>
+                <p>Safe and encrypted transactions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Gift Haven</h4>
+                <p>Your one-stop destination for thoughtful gifting</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">𝕏</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">▶️</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe for exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gift Haven. All rights reserved. | Crafted with ❤️</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
