@@ -5,92 +5,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Gift Haven</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">🎁 Gift Haven</div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="products.html" class="nav-link">Products</a></li>
-                <li><a href="cart.html" class="nav-link">Cart</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span class="cart-count" id="cart-count">0</span></a></li>
                 <li><a href="contact.html" class="nav-link active">Contact</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Contact Header -->
+    <div class="contact-header">
+        <h1>Get in Touch</h1>
+        <p>We'd love to hear from you. Reach out to us anytime!</p>
+    </div>
+
     <!-- Main Content -->
-    <main class="container">
-        <h1>Contact Us</h1>
-        <p class="subtitle">We'd love to hear from you!</p>
-
-        <div class="contact-section">
-            <!-- Contact Form -->
-            <div class="contact-form-container">
-                <h2>Send us a Message</h2>
-                <form id="contactForm" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe">
+    <main class="contact-container">
+        <div class="contact-wrapper">
+            <!-- Contact Form Section -->
+            <section class="contact-form-section">
+                <div class="form-card glass-effect">
+                    <div class="form-header">
+                        <h2>📧 Send us a Message</h2>
+                        <p>Fill out the form below and we'll get back to you shortly</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    <form id="contactForm" class="contact-form">
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name">Full Name</label>
+                            </div>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <span class="input-icon">✉️</span>
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email">Email Address</label>
+                            </div>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+
+                        <!-- Phone Field -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <span class="input-icon">📞</span>
+                                <input type="tel" id="phone" name="phone" placeholder=" ">
+                                <label for="phone">Phone Number (Optional)</label>
+                            </div>
+                        </div>
+
+                        <!-- Subject Field -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <span class="input-icon">📝</span>
+                                <input type="text" id="subject" name="subject" required placeholder=" ">
+                                <label for="subject">Subject</label>
+                            </div>
+                            <span class="error-message" id="subjectError"></span>
+                        </div>
+
+                        <!-- Message Field -->
+                        <div class="form-group">
+                            <div class="textarea-wrapper">
+                                <span class="input-icon textarea-icon">💬</span>
+                                <textarea id="message" name="message" required placeholder=" " rows="5"></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-lg contact-btn">
+                            <span>Send Message</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <h3>Message Sent Successfully!</h3>
+                        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Info Section -->
+            <section class="contact-info-section">
+                <!-- Info Cards -->
+                <div class="info-cards-container">
+                    <!-- Phone Card -->
+                    <div class="info-card glass-effect" data-aos="fadeInUp" data-aos-delay="100">
+                        <div class="info-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p class="info-main">(555) 123-4567</p>
+                        <p class="info-sub">Mon-Fri, 9AM-6PM EST</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                    <!-- Email Card -->
+                    <div class="info-card glass-effect" data-aos="fadeInUp" data-aos-delay="200">
+                        <div class="info-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p class="info-main">support@gifthaven.com</p>
+                        <p class="info-sub">We respond within 24hrs</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Your subject here">
+                    <!-- Address Card -->
+                    <div class="info-card glass-effect" data-aos="fadeInUp" data-aos-delay="300">
+                        <div class="info-icon">📍</div>
+                        <h3>Address</h3>
+                        <p class="info-main">123 Gift Lane</p>
+                        <p class="info-sub">Shop City, ST 12345, USA</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="5" required
-                            placeholder="Tell us more..."></textarea>
+                    <!-- Hours Card -->
+                    <div class="info-card glass-effect" data-aos="fadeInUp" data-aos-delay="400">
+                        <div class="info-icon">🕒</div>
+                        <h3>Business Hours</h3>
+                        <p class="info-main">Mon-Fri: 9AM - 6PM</p>
+                        <p class="info-sub">Sat: 10AM - 4PM | Sun: Closed</p>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-
-            <!-- Contact Information -->
-            <div class="contact-info-container">
-                <h2>Contact Information</h2>
-                <div class="info-item">
-                    <h3>📍 Address</h3>
-                    <p>123 Gift Lane<br>Shop City, ST 12345<br>USA</p>
                 </div>
 
-                <div class="info-item">
-                    <h3>📞 Phone</h3>
-                    <p>(555) 123-4567<br>Monday - Friday: 9AM - 6PM</p>
+                <!-- Map Section -->
+                <div class="map-section glass-effect" data-aos="fadeInUp" data-aos-delay="500">
+                    <h3>📍 Visit Us</h3>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663038471943!2d-74.00601!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMjEuNiJX!5e0!3m2!1sen!2sus!4v1234567890"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
 
-                <div class="info-item">
-                    <h3>✉️ Email</h3>
-                    <p>support@gifthaven.com<br>info@gifthaven.com</p>
+                <!-- FAQ Section -->
+                <div class="faq-section" data-aos="fadeInUp" data-aos-delay="600">
+                    <h3>❓ Frequently Asked Questions</h3>
+                    <div class="faq-container">
+                        <details class="faq-item">
+                            <summary>How long does shipping take?</summary>
+                            <p>Standard shipping takes 5-7 business days. Express shipping is available for 2-3 business
+                                days delivery.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>What is your return policy?</summary>
+                            <p>We offer a 30-day return policy on all items. Items must be unused and in original
+                                packaging.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Do you offer gift wrapping?</summary>
+                            <p>Yes! We provide complimentary gift wrapping for all orders. You can request it during
+                                checkout.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Is my payment information secure?</summary>
+                            <p>Absolutely! We use SSL encryption to protect your payment information. Your data is
+                                completely secure.</p>
+                        </details>
+                    </div>
                 </div>
-
-                <div class="info-item">
-                    <h3>🕒 Business Hours</h3>
-                    <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM<br>Sun: Closed</p>
-                </div>
-            </div>
+            </section>
         </div>
     </main>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Gift Haven. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Gift Haven</h4>
+                <p>Your one-stop shop for the perfect gift. Quality, creativity, and care in every purchase.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" class="social-icon" title="Instagram">📷</a>
+                    <a href="#" class="social-icon" title="Facebook">👍</a>
+                    <a href="#" class="social-icon" title="Twitter">🐦</a>
+                    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gift Haven. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms &
+                    Conditions</a></p>
+        </div>
     </footer>
 
     <script src="js/script.js"></script>

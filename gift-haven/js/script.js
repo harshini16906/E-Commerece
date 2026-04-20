@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
+        setupContactFormValidation();
     }
 
     // Checkout button
@@ -19,9 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
         checkoutBtn.addEventListener('click', handleCheckout);
     }
 
+    // Back to top button
+    setupBackToTopButton();
+
     // Update cart display if on cart page
     updateCartDisplay();
     updateCartCount();
+
+    // Scroll event for navbar and back-to-top
+    window.addEventListener('scroll', handleScroll);
 });
 
 // ================================
@@ -215,41 +222,161 @@ function handleCheckout() {
 }
 
 // ================================
+// Contact Form Validation Setup
+// ================================
+/**
+ * Setup real-time validation for contact form fields
+ */
+function setupContactFormValidation() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+    
+    inputs.forEach(input => {
+        // Validate on blur
+        input.addEventListener('blur', function() {
+            validateField(this);
+        });
+
+        // Remove error on focus
+        input.addEventListener('focus', function() {
+            clearFieldError(this);
+        });
+    });
+}
+
+/**
+ * Validate individual form field
+ * @param {HTMLElement} field - Form field element
+ * @returns {boolean} - True if valid, false otherwise
+ */
+function validateField(field) {
+    const fieldName = field.getAttribute('name');
+    const value = field.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+
+    switch(fieldName) {
+        case 'name':
+            if (value.length < 2) {
+                isValid = false;
+                errorMessage = 'Name must be at least 2 characters';
+            }
+            break;
+        case 'email':
+            if (!isValidEmail(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+            break;
+        case 'subject':
+            if (value.length < 5) {
+                isValid = false;
+                errorMessage = 'Subject must be at least 5 characters';
+            }
+            break;
+        case 'message':
+            if (value.length < 10) {
+                isValid = false;
+                errorMessage = 'Message must be at least 10 characters';
+            }
+            break;
+    }
+
+    if (!isValid) {
+        showFieldError(field, errorMessage);
+    }
+
+    return isValid;
+}
+
+/**
+ * Show error message for a field
+ * @param {HTMLElement} field - Form field element
+ * @param {string} message - Error message
+ */
+function showFieldError(field, message) {
+    field.classList.add('error');
+    const fieldName = field.getAttribute('name');
+    const errorEl = document.getElementById(`${fieldName}Error`);
+    if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.classList.add('show');
+    }
+}
+
+/**
+ * Clear error for a field
+ * @param {HTMLElement} field - Form field element
+ */
+function clearFieldError(field) {
+    field.classList.remove('error');
+    const fieldName = field.getAttribute('name');
+    const errorEl = document.getElementById(`${fieldName}Error`);
+    if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.classList.remove('show');
+    }
+}
+
+// ================================
 // Contact Form Submission
 // ================================
 /**
- * Handle contact form submission
+ * Handle contact form submission with validation
  * @param {Event} event - Form submit event
  */
 function handleFormSubmit(event) {
     event.preventDefault();
 
+    const form = document.getElementById('contactForm');
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const subjectField = document.getElementById('subject');
+    const messageField = document.getElementById('message');
+
+    // Validate all fields
+    const isNameValid = validateField(nameField);
+    const isEmailValid = validateField(emailField);
+    const isSubjectValid = validateField(subjectField);
+    const isMessageValid = validateField(messageField);
+
+    if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+        showNotification('Please fix the errors in the form', 'error');
+        return;
+    }
+
     // Get form data
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
+    const formData = {
+        name: nameField.value.trim(),
+        email: emailField.value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        subject: subjectField.value.trim(),
+        message: messageField.value.trim()
+    };
 
-    // Basic validation
-    if (!name || !email || !subject || !message) {
-        showNotification('Please fill in all required fields!', 'error');
-        return;
+    // Log form data (in real application, send to server)
+    console.log('📧 Message Sent:', formData);
+
+    // Hide form and show success message
+    form.style.display = 'none';
+    const successMsg = document.getElementById('successMessage');
+    if (successMsg) {
+        successMsg.style.display = 'flex';
     }
 
-    // Email validation
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address!', 'error');
-        return;
-    }
+    // Show notification
+    showNotification('Message sent successfully! We will get back to you within 24 hours.', 'success');
 
-    // Here you would normally send the form data to a server
-    console.log('Form Data:', { name, email, subject, message });
-
-    // Show success message
-    showNotification('Message sent successfully! We will get back to you soon.', 'success');
-
-    // Reset form
-    document.getElementById('contactForm').reset();
+    // Reset form after 3 seconds
+    setTimeout(() => {
+        form.reset();
+        form.style.display = 'block';
+        if (successMsg) {
+            successMsg.style.display = 'none';
+        }
+    }, 5000);
 }
 
 // ================================
@@ -354,6 +481,54 @@ function injectAnimations() {
 
 // Inject animations when page loads
 injectAnimations();
+
+// ================================
+// Back to Top Button Functions
+// ================================
+/**
+ * Setup back to top button functionality
+ */
+function setupBackToTopButton() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (!backToTopBtn) return;
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', handleScroll);
+}
+
+/**
+ * Handle scroll events for back-to-top and navbar effects
+ */
+function handleScroll() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }
+
+    // Add scroll effect to navbar
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+}
+
+/**
+ * Scroll to top of page smoothly
+ */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
 // ================================
 // Console Message for Developers
