@@ -5,79 +5,387 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - Gift Haven</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">🎁 Gift Haven</div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="products.html" class="nav-link">Products</a></li>
-                <li><a href="cart.html" class="nav-link active">Cart</a></li>
+                <li><a href="cart.html" class="nav-link active">Cart <span class="cart-count"
+                            id="cart-count">0</span></a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Page Header -->
+    <div class="cart-header">
+        <h1>🛒 Your Shopping Cart</h1>
+        <p>Review your items and proceed to checkout</p>
+    </div>
+
     <!-- Main Content -->
-    <main class="container">
-        <h1>Shopping Cart</h1>
+    <main class="cart-container">
+        <div class="cart-wrapper">
 
-        <!-- Cart Items -->
-        <section class="cart-section">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items">
-                    <!-- Cart items will be displayed here -->
-                    <tr>
-                        <td colspan="5" class="empty-cart">Your cart is empty. <a href="products.html">Continue
-                                shopping</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <!-- Cart Items Section -->
+            <section class="cart-items-section">
+                <div id="emptyCart" class="empty-cart-message">
+                    <div class="empty-icon">🛒</div>
+                    <h2>Your cart is empty</h2>
+                    <p>Start shopping to add items to your cart</p>
+                    <a href="products.html" class="btn btn-primary btn-lg">Continue Shopping</a>
+                </div>
 
-        <!-- Cart Summary -->
-        <section class="cart-summary">
-            <h2>Order Summary</h2>
-            <div class="summary-row">
-                <span>Subtotal:</span>
-                <span id="subtotal">$0.00</span>
-            </div>
-            <div class="summary-row">
-                <span>Shipping:</span>
-                <span id="shipping">$0.00</span>
-            </div>
-            <div class="summary-row">
-                <span>Tax:</span>
-                <span id="tax">$0.00</span>
-            </div>
-            <div class="summary-row total">
-                <span>Total:</span>
-                <span id="total">$0.00</span>
-            </div>
-            <button class="btn btn-primary btn-checkout">Proceed to Checkout</button>
-            <a href="products.html" class="btn btn-secondary">Continue Shopping</a>
-        </section>
+                <div id="cartContent" style="display: none;">
+                    <!-- Cart Items List -->
+                    <div id="cartItemsList" class="cart-items-list">
+                        <!-- Cart items will be rendered here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Summary Section -->
+            <aside class="order-summary glass-effect">
+                <h2>Order Summary</h2>
+
+                <!-- Coupon Section -->
+                <div class="coupon-section">
+                    <label>Have a coupon code?</label>
+                    <div class="coupon-input-group">
+                        <input type="text" id="couponInput" class="coupon-input" placeholder="Enter code"
+                            onkeypress="handleCouponKeyPress(event)">
+                        <button class="btn-apply-coupon" onclick="applyCoupon()">Apply</button>
+                    </div>
+                    <div id="couponMessage" class="coupon-message"></div>
+                </div>
+
+                <!-- Summary Details -->
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Discount:</span>
+                        <span id="discount">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="summary-buttons">
+                    <button class="btn btn-primary btn-lg btn-checkout" onclick="proceedToCheckout()">
+                        ✓ Proceed to Checkout
+                    </button>
+                    <a href="products.html" class="btn btn-outline btn-lg">
+                        ← Continue Shopping
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="badge">🔒 Secure Payment</div>
+                    <div class="badge">📦 Fast Shipping</div>
+                    <div class="badge">↩️ Easy Returns</div>
+                </div>
+            </aside>
+
+        </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Gift Haven. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Gift Haven</h4>
+                <p>Your one-stop destination for thoughtful gifting</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">𝕏</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">▶️</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe for exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gift Haven. All rights reserved. | Crafted with ❤️</p>
+        </div>
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // Coupon codes database
+        const validCoupons = {
+            'GIFT20': 0.20,      // 20% off
+            'WELCOME10': 0.10,   // 10% off
+            'SAVE15': 0.15,      // 15% off
+            'FRIEND25': 0.25     // 25% off
+        };
+
+        let appliedDiscount = 0;
+
+        // Initialize cart on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            displayCart();
+            updateNavbarScroll();
+            updateCartCount();
+        });
+
+        // Update navbar scroll effect
+        window.addEventListener('scroll', updateNavbarScroll);
+
+        function updateNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Display cart items
+        function displayCart() {
+            const emptyCart = document.getElementById('emptyCart');
+            const cartContent = document.getElementById('cartContent');
+            const cartItemsList = document.getElementById('cartItemsList');
+
+            if (cart.length === 0) {
+                emptyCart.style.display = 'flex';
+                cartContent.style.display = 'none';
+                updateCartSummary(0, 0, 0);
+                return;
+            }
+
+            emptyCart.style.display = 'none';
+            cartContent.style.display = 'block';
+            cartItemsList.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const cartItem = createCartItem(item, index);
+                cartItemsList.appendChild(cartItem);
+                // Stagger animation
+                setTimeout(() => {
+                    cartItem.style.animation = `fadeInUp 0.5s ease-out forwards`;
+                }, index * 50);
+            });
+
+            updateCartTotals();
+        }
+
+        // Create cart item element
+        function createCartItem(item, index) {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'cart-item glass-effect';
+            itemDiv.style.opacity = '0';
+
+            const itemTotal = item.price * item.quantity;
+
+            itemDiv.innerHTML = `
+                <div class="cart-item-image">
+                    <img src="${item.image || 'images/placeholder-1.jpg'}" alt="${item.name}">
+                </div>
+                <div class="cart-item-details">
+                    <h3>${item.name}</h3>
+                    <p class="item-price">$${item.price.toFixed(2)}</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <button class="qty-btn" onclick="decreaseQuantity(${item.id})">−</button>
+                    <input type="number" value="${item.quantity}" min="1" readonly>
+                    <button class="qty-btn" onclick="increaseQuantity(${item.id})">+</button>
+                </div>
+                <div class="cart-item-total">
+                    <div class="item-total-label">Total</div>
+                    <div class="item-total-price">$${itemTotal.toFixed(2)}</div>
+                </div>
+                <button class="btn-remove" onclick="removeFromCart(${item.id}, '${item.name}')" title="Remove item">
+                    ✕
+                </button>
+            `;
+
+            return itemDiv;
+        }
+
+        // Increase quantity
+        function increaseQuantity(productId) {
+            const product = cart.find(item => item.id === productId);
+            if (product) {
+                product.quantity += 1;
+                saveCart();
+                displayCart();
+                showNotification(`${product.name} quantity increased!`, 'info');
+            }
+        }
+
+        // Decrease quantity
+        function decreaseQuantity(productId) {
+            const product = cart.find(item => item.id === productId);
+            if (product && product.quantity > 1) {
+                product.quantity -= 1;
+                saveCart();
+                displayCart();
+                showNotification(`${product.name} quantity decreased!`, 'info');
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(productId, productName) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            displayCart();
+            showNotification(`${productName} removed from cart`, 'success');
+        }
+
+        // Calculate and update totals
+        function updateCartTotals() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            const discountAmount = subtotal * appliedDiscount;
+            const discountedSubtotal = subtotal - discountAmount;
+            const shipping = discountedSubtotal > 0 ? (discountedSubtotal > 100 ? 0 : 10) : 0;
+            const tax = discountedSubtotal * 0.08;
+            const total = discountedSubtotal + shipping + tax;
+
+            updateCartSummary(subtotal, discountAmount, shipping, tax, total);
+        }
+
+        // Update cart summary display
+        function updateCartSummary(subtotal, discount = 0, shipping = 0, tax = 0, total = 0) {
+            const subtotalEl = document.getElementById('subtotal');
+            const discountEl = document.getElementById('discount');
+            const shippingEl = document.getElementById('shipping');
+            const taxEl = document.getElementById('tax');
+            const totalEl = document.getElementById('total');
+
+            if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            if (discountEl) discountEl.textContent = `-$${discount.toFixed(2)}`;
+            if (shippingEl) shippingEl.textContent = shipping > 0 ? `$${shipping.toFixed(2)}` : 'FREE';
+            if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
+            if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Apply coupon
+        function applyCoupon() {
+            const couponCode = document.getElementById('couponInput').value.trim().toUpperCase();
+            const couponMessage = document.getElementById('couponMessage');
+
+            if (!couponCode) {
+                couponMessage.textContent = 'Please enter a coupon code';
+                couponMessage.className = 'coupon-message error';
+                return;
+            }
+
+            if (validCoupons.hasOwnProperty(couponCode)) {
+                appliedDiscount = validCoupons[couponCode];
+                const discountPercent = Math.round(appliedDiscount * 100);
+                couponMessage.textContent = `✓ Coupon applied! ${discountPercent}% off`;
+                couponMessage.className = 'coupon-message success';
+                showNotification(`${couponCode} coupon applied - ${discountPercent}% off!`, 'success');
+                updateCartTotals();
+                document.getElementById('couponInput').disabled = true;
+                document.querySelector('.btn-apply-coupon').disabled = true;
+            } else {
+                couponMessage.textContent = 'Invalid coupon code';
+                couponMessage.className = 'coupon-message error';
+                showNotification('Coupon code not found', 'error');
+            }
+        }
+
+        // Handle Enter key for coupon
+        function handleCouponKeyPress(event) {
+            if (event.key === 'Enter') {
+                applyCoupon();
+            }
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'error');
+                return;
+            }
+
+            showNotification('Processing your order... Redirecting to checkout', 'success');
+
+            setTimeout(() => {
+                // In a real application, this would redirect to a checkout page
+                // For now, show a confirmation
+                alert(`Thank you for your order!\n\nTotal: $${document.getElementById('total').textContent}\n\nOrder ID: #${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
+                // Clear cart
+                cart = [];
+                saveCart();
+                displayCart();
+                appliedDiscount = 0;
+            }, 1500);
+        }
+
+        // Update cart count in navbar
+        function updateCartCount() {
+            const cartCountEl = document.getElementById('cart-count');
+            if (!cartCountEl) return;
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+            cartCountEl.style.display = totalItems > 0 ? 'inline-flex' : 'none';
+        }
+    </script>
 </body>
 
 </html>
